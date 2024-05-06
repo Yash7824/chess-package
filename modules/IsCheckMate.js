@@ -54,3 +54,5 @@ const IsCheckMate = (king, fromRow, fromCol, chess_Board) => {
     }
     return true;
   }
+
+  export default IsCheckMate;
