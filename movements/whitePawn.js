@@ -1,50 +1,43 @@
-
+import IsBlackPiece from "../modules/IsBlackPiece.js";
+import IsInvalidMove from "../modules/IsInvalidMove.js";
+import IsEmptyTile from "../modules/IsEmptyTile.js";
+import resetToPreviousPosition from "../modules/resetToPrevPosition.js";
+import { currentPlayer } from "../index.js";
 
 const whitePawnMovement = (fromRow, fromCol, toRow, toCol, chess_Board) => {
-    const piece = chess_Board[fromRow][fromCol];
-
-}
-
-whitePawnMovement(
-    fromRow: number,
-    fromCol: number,
-    toRow: number,
-    toCol: number
+  const piece = chess_Board[fromRow][fromCol];
+  // Attacking Black Pieces
+  if (
+    toRow == fromRow - 1 &&
+    (toCol == fromCol - 1 || toCol == fromCol + 1) &&
+    IsBlackPiece(toRow, toCol, chess_Board) && 
+    !IsInvalidMove(piece, fromRow, fromCol, toRow, toCol, chess_Board)
   ) {
-    const piece = this.genRule.chess_Board[fromRow][fromCol];
+    chess_Board[toRow][toCol] = piece;
+    chess_Board[fromRow][fromCol] = '';
+    toggleCurrentPlayer(currentPlayer);
+  }
 
-    // Attacking Black Pieces
-    if (
-      toRow == fromRow - 1 &&
-      (toCol == fromCol - 1 || toCol == fromCol + 1) &&
-      this.genRule.IsBlackPiece(toRow, toCol) && 
-      !this.genRule.IsInvalidMove(piece, fromRow, fromCol, toRow, toCol)
-    ) {
-      this.genRule.chess_Board[toRow][toCol] = piece;
-      this.genRule.chess_Board[fromRow][fromCol] = '';
-      this.genRule.toggleCurrentPlayer();
+  // If the tile is empty
+  if (IsEmptyTile(toRow, toCol, chess_Board)) {
+    if (IsInvalidMove(piece, fromRow, fromCol, toRow, toCol, chess_Board)) {
+      resetToPreviousPosition(fromRow, fromCol, toRow, toCol, chess_Board);
+      return;
     }
 
-    // If the tile is empty
-    if (this.genRule.IsEmptyTile(toRow, toCol)) {
-      if (this.genRule.IsInvalidMove(piece, fromRow, fromCol, toRow, toCol)) {
-        this.genRule.resetToPreviousPosition(fromRow, fromCol, toRow, toCol);
-        return;
-      }
-
-      // If Valid Move is played
-      if (!this.genRule.IsInvalidMove(piece, fromRow, fromCol, toRow, toCol)) {
-        if (fromRow == 6 && toRow >= fromRow - 2 && toRow < fromRow) {
-          this.genRule.chess_Board[toRow][toCol] = piece;
-          this.genRule.chess_Board[fromRow][fromCol] = '';
-          this.genRule.toggleCurrentPlayer();
-        } else if (fromRow != 6 && toRow >= fromRow - 1 && toRow < fromRow) {
-          this.genRule.chess_Board[toRow][toCol] = piece;
-          this.genRule.chess_Board[fromRow][fromCol] = '';
-          this.genRule.toggleCurrentPlayer();
-        }
+    // If Valid Move is played
+    if (!IsInvalidMove(piece, fromRow, fromCol, toRow, toCol, chess_Board)) {
+      if (fromRow == 6 && toRow >= fromRow - 2 && toRow < fromRow) {
+        chess_Board[toRow][toCol] = piece;
+        chess_Board[fromRow][fromCol] = '';
+        toggleCurrentPlayer(currentPlayer);
+      } else if (fromRow != 6 && toRow >= fromRow - 1 && toRow < fromRow) {
+        chess_Board[toRow][toCol] = piece;
+        chess_Board[fromRow][fromCol] = '';
+        toggleCurrentPlayer(currentPlayer);
       }
     }
   }
+}
 
 export default whitePawnMovement;
