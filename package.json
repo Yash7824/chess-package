@@ -1,6 +1,6 @@
 {
   "name": "is-chess",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "chess library",
   "main": "index.js",
   "scripts": {
