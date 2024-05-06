@@ -2,8 +2,8 @@ import IsInvalidMove from "../modules/IsInvalidMove.js";
 import IsBlackPiece from "../modules/IsBlackPiece.js";
 import { currentPlayer } from "../index.js";
 import resetToPreviousPosition from "../modules/resetToPrevPosition.js";
-import IsEmptyTile from "./modules/IsEmptyTile.js";
-import toggleCurrentPlayer from "./modules/toggleCurrentPlayer.js";
+import IsEmptyTile from "../modules/IsEmptyTile.js";
+import toggleCurrentPlayer from "../modules/toggleCurrentPlayer.js";
 
 const whiteRookMovement = (fromRow, fromCol, toRow, toCol, chess_Board) => {
     const piece = chess_Board[fromRow][fromCol];

@@ -1,7 +1,7 @@
 import IsInvalidMove from "../modules/IsInvalidMove.js";
 import IsBlackPiece from "../modules/IsBlackPiece.js";
 import IsEmptyTile from "../modules/IsEmptyTile.js";
-import toggleCurrentPlayer from "./modules/toggleCurrentPlayer.js";
+import toggleCurrentPlayer from "../modules/toggleCurrentPlayer.js";
 import { currentPlayer } from "../index.js";
 
 const whiteBishopMovement = ( fromRow, fromCol, toRow, toCol, chess_Board) => {

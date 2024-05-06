@@ -2,7 +2,7 @@ import toggleCurrentPlayer from "../modules/toggleCurrentPlayer.js";
 import IsBlackPiece from "../modules/IsBlackPiece.js";
 import IsInvalidMove from "../modules/IsInvalidMove.js";
 import resetToPreviousPosition from "../modules/resetToPrevPosition.js";
-import IsEmptyTile from "./modules/IsEmptyTile.js";
+import IsEmptyTile from "../modules/IsEmptyTile.js";
 import { currentPlayer } from "../index.js";
 
 const whiteKnightMovement = (fromRow, fromCol, toRow, toCol, chess_Board) => {
