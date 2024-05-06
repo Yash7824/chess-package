@@ -1,4 +1,3 @@
-# Chess - Package
+## NPM-Package
 
-## NPM Package
 1. npm install is-chess
